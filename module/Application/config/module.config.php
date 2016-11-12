@@ -24,6 +24,16 @@ return [
                     ],
                 ],
             ],
+            'login' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/login',
+                    'defaults' => [
+                        'controller' => Controller\LoginController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -53,6 +63,13 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\LoginController::class => function($container, $requestedName) {
+                $tableGateway = $container->get('Application\Model\UserTableGateway');
+                $cache = $container->get('Application\Service\Cache');
+                $controller = new Controller\LoginController($tableGateway, $cache);
+
+                return $controller;
+            },
             Controller\BeerController::class => function($container, $requestedName) {
                 $tableGateway = $container->get('Application\Model\BeerTableGateway');
                 $cache = $container->get('Application\Service\Cache');

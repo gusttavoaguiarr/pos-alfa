@@ -31,4 +31,5 @@ class Auth
         //validar o token de alguma forma...
         return true;
     }
+
 }

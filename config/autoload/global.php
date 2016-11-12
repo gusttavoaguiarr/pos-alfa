@@ -15,6 +15,7 @@ return [
     'service_manager' => [
         'factories' => [
             Application\Model\BeerTableGateway::class =>  Application\Factory\BeerTableGateway::class,
+            Application\Model\UserTableGateway::class =>  Application\Factory\UserTableGateway::class,
             Application\Factory\DbAdapter::class => Application\Factory\DbAdapter::class,
             Application\Service\Auth::class => Application\Factory\ServiceAuth::class,
             'Application\Service\Cache' => Application\Factory\ServiceCache::class,
